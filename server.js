@@ -63,7 +63,7 @@ server.applyMiddleware({ app })
 app.use(handle.error.notFound)
 app.use(handle.error.productionErrors)
 
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 80
 app.listen(PORT, () =>
   console.log(
     '\x1b[34m%s\x1b[0m',
