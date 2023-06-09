@@ -36,7 +36,7 @@ RUN npm ci --production
 COPY . /app
 
 # Expõe a porta do servidor da aplicação
-EXPOSE 8080
+EXPOSE 80
 
 # Executa o serviço do MongoDB
 CMD systemctl start mongod && mongorestore --host=localhost:27017 --db=rickmorty --drop /app/test/data && npm start
