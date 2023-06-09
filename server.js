@@ -17,7 +17,7 @@ const { Character, Location, Episode } = require('./graphql/sources')
 const handle = require('./handlers')
 const routes = require('./routes')
 
-const LOCAL = `mongodb://localhost:27017/rickmorty${process.env.NODE_ENV === 'test' ? '-test' : ''}`
+const LOCAL = `mongodb://189.90.140.39:27017/rickmorty${process.env.NODE_ENV === 'test' ? '-test' : ''}`
 const db = process.env.NODE_ENV === 'production' ? process.env.DATABASE : LOCAL
 
 const server = new ApolloServer({
@@ -25,7 +25,6 @@ const server = new ApolloServer({
   resolvers,
   introspection: true,
   playground: true,
-  validationRules: [handle.depth(4)],
   dataSources: () => ({
     character: new Character(),
     location: new Location(),
@@ -33,7 +32,7 @@ const server = new ApolloServer({
   }),
 })
 
-mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.Promise = global.Promise
 
 mongoose.connection.on('error', (err) => {
